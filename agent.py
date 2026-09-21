@@ -1,5 +1,6 @@
 import os
 import requests
+from bs4 import BeautifulSoup
 
 api_key = os.environ["OPENROUTER_API_KEY"]
 
