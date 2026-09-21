@@ -1,6 +1,16 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+URL = "https://getautoseo.com/"
+
+page = requests.get(URL, timeout=20)
+page.raise_for_status()
+
+soup = BeautifulSoup(page.text, "html.parser")
+
+text = soup.get_text(" ", strip=True)
+
+print(text[:5000])
 
 api_key = os.environ["OPENROUTER_API_KEY"]
 
