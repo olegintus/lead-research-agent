@@ -82,6 +82,16 @@ response = requests.post(
 
 response.raise_for_status()
 
+import json
+import re
+
 result = response.json()
 
-print(result["choices"][0]["message"]["content"])
+content = result["choices"][0]["message"]["content"]
+
+content = re.sub(r"^```json\s*", "", content.strip())
+content = re.sub(r"\s*```$", "", content)
+
+data = json.loads(content)
+
+print(json.dumps(data, ensure_ascii=False, indent=2))
